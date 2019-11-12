@@ -1,3 +1,13 @@
 import React from "react";
+import NumbersContainer from "../../components/NumbersContainer";
 
-export default () => <h1>Sorting Algorithms Examples</h1>;
+const SortingAlgorithmsExample = () => {
+  return (
+    <div className="page-container">
+      <h1>Sorting Algorithms Examples</h1>
+      <NumbersContainer />
+    </div>
+  );
+};
+
+export default SortingAlgorithmsExample;

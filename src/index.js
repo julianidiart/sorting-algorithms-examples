@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import SortingAlgorithmsExamples from "./pages/SortingAlgorithmsExamples";
+import "./styles/styles.scss";
 
 ReactDOM.render(<SortingAlgorithmsExamples />, document.getElementById("root"));
 

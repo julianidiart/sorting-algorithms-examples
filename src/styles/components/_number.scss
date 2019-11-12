@@ -1,0 +1,16 @@
+.number {
+  background-color: $secondary-color;
+  border: 1px solid $primary-color;
+  border-bottom-width: 2px;
+  border-top-width: 2px;
+  text-align: center;
+  width: 44px;
+}
+
+.number:first-child {
+  border-left: 2px solid $primary-color;
+}
+
+.number:last-child {
+  border-right: 2px solid $primary-color;
+}
