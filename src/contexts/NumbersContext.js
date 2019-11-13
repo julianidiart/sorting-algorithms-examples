@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
-import { selectionSort } from "../sortingAlgorithms";
+import selectionSort from "../sortingAlgorithms/selectionSort";
+import insertionSort from "../sortingAlgorithms/insertionSort";
 
 const Context = createContext([]);
 export const NumbersStore = props => {
@@ -47,21 +48,27 @@ export const NumbersStore = props => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
   const handleSelectionSort = () => {
-    const selectionSortMovements = selectionSort(numbers);
-    selectionSortMovements.forEach((movement, index) => {
+    const selectionSortAnimations = selectionSort(numbers);
+    performAnimations(selectionSortAnimations);
+  };
+  const handleInsertionSort = () => {
+    const insertionSortAnimations = insertionSort(numbers);
+    performAnimations(insertionSortAnimations);
+  };
+  const performAnimations = animations => {
+    animations.forEach((animation, index) => {
       setTimeout(() => {
         let movingNumbers = [...numbers];
-        movingNumbers[movement.index].classes = movement.classes;
-        if (movement.toIndex !== undefined) {
-          const aux = movingNumbers[movement.toIndex].value;
-          movingNumbers[movement.toIndex].value =
-            movingNumbers[movement.index].value;
-          movingNumbers[movement.index].value = aux;
+        movingNumbers[animation.index].classes = animation.classes;
+        if (animation.toIndex !== undefined) {
+          const aux = movingNumbers[animation.toIndex].value;
+          movingNumbers[animation.toIndex].value =
+            movingNumbers[animation.index].value;
+          movingNumbers[animation.index].value = aux;
         }
         setNumbers(movingNumbers);
       }, index * 200);
     });
-    // setNumbers(orderedNumbers);
   };
   return (
     <Context.Provider
@@ -71,7 +78,8 @@ export const NumbersStore = props => {
         generateRandomNumbers,
         showBars,
         setShowBars,
-        handleSelectionSort
+        handleSelectionSort,
+        handleInsertionSort
       }}
     >
       {props.children}

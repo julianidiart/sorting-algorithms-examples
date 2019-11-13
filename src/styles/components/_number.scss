@@ -40,6 +40,7 @@
 
 .sorting--smallest .number {
   background-color: lighten($tertiary-color, 10%);
+  border-color: darken($tertiary-color, 10%);
   color: $secondary-color;
 }
 

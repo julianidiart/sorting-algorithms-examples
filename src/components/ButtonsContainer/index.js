@@ -20,6 +20,9 @@ const ButtonsContainer = () => {
         <button className="button" onClick={context.handleSelectionSort}>
           Selection sort
         </button>
+        <button className="button" onClick={context.handleInsertionSort}>
+          Insertion sort
+        </button>
       </div>
     </>
   );
