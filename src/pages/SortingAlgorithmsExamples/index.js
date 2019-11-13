@@ -1,12 +1,17 @@
 import React from "react";
 import NumbersContainer from "../../components/NumbersContainer";
+import ButtonsContainer from "../../components/ButtonsContainer";
+import { NumbersStore } from "../../contexts/NumbersContext";
 
 const SortingAlgorithmsExample = () => {
   return (
-    <div className="page-container">
-      <h1>Sorting Algorithms Examples</h1>
-      <NumbersContainer />
-    </div>
+    <NumbersStore>
+      <div className="page-container">
+        <h1>Sorting Algorithms Examples</h1>
+        <NumbersContainer />
+        <ButtonsContainer />
+      </div>
+    </NumbersStore>
   );
 };
 

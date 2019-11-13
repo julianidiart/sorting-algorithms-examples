@@ -1,45 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import NumbersContext from "../../contexts/NumbersContext";
 
 const NumbersContainer = () => {
-  const [numbers, setNumbers] = useState([]);
-  useEffect(() => {
-    generateRandomNumbers();
-    // eslint-disable-next-line
-  }, []);
-  const generateRandomNumbers = () => {
-    const numbersArray = [];
-    for (let i = 0; i < 10; i++) {
-      numbersArray.push({ id: uniqueID(), value: getRandomNumber(0, 99) });
-    }
-    setNumbers(numbersArray);
-  };
-  const uniqueID = () => {
-    function chr4() {
-      return Math.random()
-        .toString(16)
-        .slice(-4);
-    }
-    return (
-      chr4() +
-      chr4() +
-      "-" +
-      chr4() +
-      "-" +
-      chr4() +
-      "-" +
-      chr4() +
-      "-" +
-      chr4() +
-      chr4() +
-      chr4()
-    );
-  };
-  const getRandomNumber = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  const context = useContext(NumbersContext);
   const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
@@ -51,12 +15,12 @@ const NumbersContainer = () => {
     if (!result.destination) return;
 
     const items = reorder(
-      numbers,
+      context.numbers,
       result.source.index,
       result.destination.index
     );
 
-    setNumbers(items);
+    context.setNumbers(items);
   };
   return (
     <>
@@ -68,7 +32,7 @@ const NumbersContainer = () => {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {numbers.map((number, index) => (
+              {context.numbers.map((number, index) => (
                 <Draggable
                   key={number.id}
                   draggableId={number.id}
@@ -76,16 +40,29 @@ const NumbersContainer = () => {
                 >
                   {(provided, snapshot) => (
                     <div
-                      className={
-                        snapshot.isDragging
-                          ? "number number--dragging"
-                          : "number"
-                      }
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      {number.value}
+                      <div
+                        className={
+                          snapshot.isDragging
+                            ? "number number--dragging"
+                            : "number"
+                        }
+                      >
+                        {number.value}
+                      </div>
+                      {context.showBars && (
+                        <div
+                          className={
+                            snapshot.isDragging
+                              ? "number-bar number-bar--dragging"
+                              : "number-bar"
+                          }
+                          style={{ height: `${number.value * 2}px` }}
+                        ></div>
+                      )}
                     </div>
                   )}
                 </Draggable>
@@ -95,11 +72,6 @@ const NumbersContainer = () => {
           )}
         </Droppable>
       </DragDropContext>
-      <div className="numbers-container">
-        <button className="button" onClick={generateRandomNumbers}>
-          Generate random numbers
-        </button>
-      </div>
     </>
   );
 };
