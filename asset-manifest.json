@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/sorting-algorithms-examples/static/css/main.7314c98e.chunk.css",
+    "main.js": "/sorting-algorithms-examples/static/js/main.a204608e.chunk.js",
+    "main.js.map": "/sorting-algorithms-examples/static/js/main.a204608e.chunk.js.map",
+    "runtime-main.js": "/sorting-algorithms-examples/static/js/runtime-main.1f569ec8.js",
+    "runtime-main.js.map": "/sorting-algorithms-examples/static/js/runtime-main.1f569ec8.js.map",
+    "static/js/2.0d0ede48.chunk.js": "/sorting-algorithms-examples/static/js/2.0d0ede48.chunk.js",
+    "static/js/2.0d0ede48.chunk.js.map": "/sorting-algorithms-examples/static/js/2.0d0ede48.chunk.js.map",
+    "index.html": "/sorting-algorithms-examples/index.html",
+    "precache-manifest.df1823bbf930b042f9617800d95b2402.js": "/sorting-algorithms-examples/precache-manifest.df1823bbf930b042f9617800d95b2402.js",
+    "service-worker.js": "/sorting-algorithms-examples/service-worker.js",
+    "static/css/main.7314c98e.chunk.css.map": "/sorting-algorithms-examples/static/css/main.7314c98e.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1f569ec8.js",
+    "static/js/2.0d0ede48.chunk.js",
+    "static/css/main.7314c98e.chunk.css",
+    "static/js/main.a204608e.chunk.js"
+  ]
+}
