@@ -1,0 +1,20 @@
+.button {
+  background: $primary-color;
+  border: 2px solid darken($color: $primary-color, $amount: 10%);
+  box-shadow: 0 4px darken($color: $primary-color, $amount: 10%);
+  color: $secondary-color;
+  font-size: $m-size;
+  font-weight: 300;
+  line-height: 1;
+  margin-top: $s-size;
+  padding: $s-size;
+  text-decoration: none;
+}
+
+.button:focus {
+  outline: 0;
+}
+.button:active {
+  box-shadow: 0 2px darken($color: $primary-color, $amount: 10%);
+  transform: translateY(4px);
+}
