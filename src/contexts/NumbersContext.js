@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
+import { selectionSort } from "../sortingAlgorithms";
 
 const Context = createContext([]);
 export const NumbersStore = props => {
@@ -11,7 +12,11 @@ export const NumbersStore = props => {
   const generateRandomNumbers = () => {
     const numbersArray = [];
     for (let i = 0; i < 10; i++) {
-      numbersArray.push({ id: uniqueID(), value: getRandomNumber(0, 99) });
+      numbersArray.push({
+        id: uniqueID(),
+        value: getRandomNumber(0, 99),
+        classes: ""
+      });
     }
     setNumbers(numbersArray);
   };
@@ -41,6 +46,23 @@ export const NumbersStore = props => {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
+  const handleSelectionSort = () => {
+    const selectionSortMovements = selectionSort(numbers);
+    selectionSortMovements.forEach((movement, index) => {
+      setTimeout(() => {
+        let movingNumbers = [...numbers];
+        movingNumbers[movement.index].classes = movement.classes;
+        if (movement.toIndex !== undefined) {
+          const aux = movingNumbers[movement.toIndex].value;
+          movingNumbers[movement.toIndex].value =
+            movingNumbers[movement.index].value;
+          movingNumbers[movement.index].value = aux;
+        }
+        setNumbers(movingNumbers);
+      }, index * 200);
+    });
+    // setNumbers(orderedNumbers);
+  };
   return (
     <Context.Provider
       value={{
@@ -48,7 +70,8 @@ export const NumbersStore = props => {
         setNumbers,
         generateRandomNumbers,
         showBars,
-        setShowBars
+        setShowBars,
+        handleSelectionSort
       }}
     >
       {props.children}

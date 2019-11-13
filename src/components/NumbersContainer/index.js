@@ -43,6 +43,7 @@ const NumbersContainer = () => {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
+                      className={number.classes}
                     >
                       <div
                         className={
