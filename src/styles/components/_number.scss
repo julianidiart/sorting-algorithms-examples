@@ -14,3 +14,9 @@
 .number:last-child {
   border-right: 2px solid $primary-color;
 }
+
+.number--dragging {
+  background: lighten($secondary-color, 10%);
+  border: 2px dashed $tertiary-color !important;
+  color: $tertiary-color;
+}
