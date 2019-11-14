@@ -10,17 +10,29 @@ const ButtonsContainer = () => {
           className="button"
           onClick={() => context.setShowBars(!context.showBars)}
         >
-          Show bars
+          {context.showBars ? "Hide" : "Show"} bars
         </button>
-        <button className="button" onClick={context.generateRandomNumbers}>
+        <button
+          className="button"
+          onClick={context.generateRandomNumbers}
+          disabled={context.sorting}
+        >
           Generate random numbers
         </button>
       </div>
       <div className="buttons-container">
-        <button className="button" onClick={context.handleSelectionSort}>
+        <button
+          className="button"
+          onClick={context.handleSelectionSort}
+          disabled={context.sorting}
+        >
           Selection sort
         </button>
-        <button className="button" onClick={context.handleInsertionSort}>
+        <button
+          className="button"
+          onClick={context.handleInsertionSort}
+          disabled={context.sorting}
+        >
           Insertion sort
         </button>
       </div>

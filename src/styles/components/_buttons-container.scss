@@ -2,3 +2,35 @@
   display: flex;
   justify-content: center;
 }
+
+.buttons-container--configuration {
+  align-items: center;
+  padding: $s-size;
+}
+
+.buttons-container--configuration .config-number {
+  border: 0;
+  color: $primary-color;
+  font-size: $m-size;
+  margin: 0 4px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.buttons-container--configuration .config-number:disabled {
+  color: black;
+}
+
+.buttons-container--configuration .config-number:focus {
+  outline: 0;
+}
+
+.buttons-container--configuration input::-webkit-outer-spin-button,
+.buttons-container--configuration input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.buttons-container--configuration input[type="number"] {
+  -moz-appearance: textfield;
+}

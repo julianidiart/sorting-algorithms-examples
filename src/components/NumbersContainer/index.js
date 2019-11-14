@@ -26,7 +26,7 @@ const NumbersContainer = () => {
     <>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable" direction="horizontal">
-          {(provided, snapshot) => (
+          {provided => (
             <div
               className="numbers-container"
               ref={provided.innerRef}

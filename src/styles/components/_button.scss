@@ -11,9 +11,16 @@
   text-decoration: none;
 }
 
+.button:disabled {
+  background: darken($color: $primary-color, $amount: 10%);
+  border: 2px solid black;
+  box-shadow: 0 4px black;
+}
+
 .button:focus {
   outline: 0;
 }
+
 .button:active {
   box-shadow: 0 2px darken($color: $primary-color, $amount: 10%);
   transform: translateY(4px);
