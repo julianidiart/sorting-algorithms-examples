@@ -81,10 +81,13 @@ export const NumbersStore = props => {
     }, animations.length * (500 / speed));
   };
   const onChangeQuantity = ({ target }) => {
-    setQuantity(target.value);
+    if (+target.value < 2 || target.value === "") setQuantity(2);
+    else if (+target.value > 99) setQuantity(99);
+    else setQuantity(target.value);
   };
   const onChangeRangeFrom = ({ target }) => {
-    setRangeFrom(target.value);
+    if (+target.value < 0 || target.value === "") setRangeFrom(0);
+    else setRangeFrom(target.value);
   };
   const onChangeRangeTo = ({ target }) => {
     setRangeTo(target.value);

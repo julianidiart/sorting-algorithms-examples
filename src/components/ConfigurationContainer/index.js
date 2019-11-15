@@ -9,6 +9,7 @@ const ConfigurationContainer = () => {
       <input
         className="config-number"
         disabled={context.sorting}
+        max="99"
         min="2"
         onChange={context.onChangeQuantity}
         step="1"
