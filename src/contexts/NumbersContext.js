@@ -5,10 +5,10 @@ import insertionSort from "../sortingAlgorithms/insertionSort";
 const Context = createContext([]);
 export const NumbersStore = props => {
   const [numbers, setNumbers] = useState([]);
-  const [showBars, setShowBars] = useState(false);
   const [quantity, setQuantity] = useState(10);
   const [rangeFrom, setRangeFrom] = useState(0);
   const [rangeTo, setRangeTo] = useState(99);
+  const [showBars, setShowBars] = useState(false);
   const [speed, setSpeed] = useState(1);
   const [sorting, setSorting] = useState(false);
   useEffect(() => {
@@ -77,7 +77,6 @@ export const NumbersStore = props => {
     });
     setTimeout(() => {
       setSorting(false);
-      console.log(sorting);
     }, animations.length * (500 / speed));
   };
   const onChangeQuantity = ({ target }) => {
