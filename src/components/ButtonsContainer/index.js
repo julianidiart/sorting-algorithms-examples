@@ -35,6 +35,13 @@ const ButtonsContainer = () => {
         >
           Insertion sort
         </button>
+        <button
+          className="button"
+          onClick={context.handleMergeSort}
+          disabled={context.sorting}
+        >
+          Merge sort
+        </button>
       </div>
     </>
   );

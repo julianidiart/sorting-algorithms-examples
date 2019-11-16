@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import selectionSort from "../sortingAlgorithms/selectionSort";
 import insertionSort from "../sortingAlgorithms/insertionSort";
+import mergeSort from "../sortingAlgorithms/mergeSort";
 
 const Context = createContext([]);
 export const NumbersStore = props => {
@@ -21,7 +22,9 @@ export const NumbersStore = props => {
       numbersArray.push({
         id: uniqueID(),
         value: getRandomNumber(rangeFrom, rangeTo),
-        classes: ""
+        classes: "",
+        merging: false,
+        mergignValue: null
       });
     }
     setNumbers(numbersArray);
@@ -53,28 +56,49 @@ export const NumbersStore = props => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
   const handleSelectionSort = () => {
-    const selectionSortAnimations = selectionSort(numbers);
+    const numbersToSort = [...numbers];
+    const selectionSortAnimations = selectionSort(numbersToSort);
     performAnimations(selectionSortAnimations);
   };
   const handleInsertionSort = () => {
-    const insertionSortAnimations = insertionSort(numbers);
+    const numbersToSort = [...numbers];
+    const insertionSortAnimations = insertionSort(numbersToSort);
     performAnimations(insertionSortAnimations);
+  };
+  const handleMergeSort = () => {
+    const numbersToSort = [...numbers];
+    const mergeSortAnimations = mergeSort(numbersToSort);
+    console.log(mergeSortAnimations);
+    performAnimations(mergeSortAnimations);
   };
   const performAnimations = animations => {
     setSorting(true);
-    animations.forEach((animation, index) => {
-      setTimeout(() => {
-        let movingNumbers = [...numbers];
-        movingNumbers[animation.index].classes = animation.classes;
-        if (animation.toIndex !== undefined) {
-          const aux = movingNumbers[animation.toIndex].value;
-          movingNumbers[animation.toIndex].value =
-            movingNumbers[animation.index].value;
-          movingNumbers[animation.index].value = aux;
-        }
-        setNumbers(movingNumbers);
-      }, index * (500 / speed));
-    });
+    animations.forEach(
+      ({ classes, index, toIndex, multiple, merging, mergingValue }, i) => {
+        setTimeout(() => {
+          let movingNumbers = [...numbers];
+          if (multiple) {
+            for (let i = index; i < toIndex; i++) {
+              movingNumbers[i].merging = merging;
+              if (merging === false)
+                movingNumbers[i].value = movingNumbers[i].mergingValue;
+              movingNumbers[i].mergingValue = mergingValue;
+              movingNumbers[i].classes = classes;
+            }
+          } else {
+            if (merging) movingNumbers[index].merging = merging;
+            if (mergingValue) movingNumbers[index].mergingValue = mergingValue;
+            if (classes !== undefined) movingNumbers[index].classes = classes;
+            if (toIndex !== undefined) {
+              const aux = movingNumbers[toIndex].value;
+              movingNumbers[toIndex].value = movingNumbers[index].value;
+              movingNumbers[index].value = aux;
+            }
+          }
+          setNumbers(movingNumbers);
+        }, i * (500 / speed));
+      }
+    );
     setTimeout(() => {
       setSorting(false);
     }, animations.length * (500 / speed));
@@ -98,8 +122,9 @@ export const NumbersStore = props => {
     <Context.Provider
       value={{
         generateRandomNumbers,
-        handleSelectionSort,
         handleInsertionSort,
+        handleMergeSort,
+        handleSelectionSort,
         numbers,
         onChangeQuantity,
         onChangeRangeFrom,

@@ -5,6 +5,7 @@
 .number {
   background-color: $secondary-color;
   border: 2px solid $primary-color;
+  height: 44px;
   margin: 1px;
   padding: 0 6px;
   text-align: center;
@@ -60,4 +61,20 @@
 .sorting--smallest .number-bar {
   background-color: lighten($tertiary-color, 30%);
   border: 1px solid $tertiary-color;
+}
+
+.sorting--selected-right .number {
+  background-color: darken($primary-color, 10%);
+  color: $secondary-color;
+}
+
+.sorting--selected-right .number-bar {
+  background-color: $primary-color;
+  border: 1px solid darken($primary-color, 10%);
+}
+
+.number--merge-value {
+  background-color: $secondary-color !important;
+  border: 2px solid $primary-color !important;
+  color: $primary-color !important;
 }

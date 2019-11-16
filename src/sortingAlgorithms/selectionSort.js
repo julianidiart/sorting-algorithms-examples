@@ -1,6 +1,6 @@
 export default numbers => {
   let animations = [];
-  numbers = [...numbers];
+  // numbers = [...numbers];
   for (let i = 0; i < numbers.length - 1; i++) {
     if (i > 0) {
       animations.push({

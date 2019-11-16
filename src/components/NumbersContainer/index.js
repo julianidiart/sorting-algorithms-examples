@@ -45,6 +45,11 @@ const NumbersContainer = () => {
                       {...provided.dragHandleProps}
                       className={number.classes}
                     >
+                      {number.merging && (
+                        <div className="number number--merge-value">
+                          {number.mergingValue}
+                        </div>
+                      )}
                       <div
                         className={
                           snapshot.isDragging
