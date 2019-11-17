@@ -8,38 +8,55 @@ const quicksort = (numbers, p = 0, r = numbers.length - 1, animations = []) => {
 
 const partition = (numbers, p, r, animations) => {
   animations.push({
+    classes: "sorting--selected",
     index: p,
-    toIndex: r + 1,
     multiple: true,
-    classes: "sorting--selected"
+    toIndex: r + 1
   });
   let q = p;
+  animations.push({
+    classes: "sorting--smallest",
+    index: r
+  });
   for (let u = p; u <= r - 1; u++) {
     if (numbers[u].value <= numbers[r].value) {
       animations.push({
-        index: q,
-        toIndex: u,
-        classes: "sorting--selected"
+        classes: "sorting--selected-left",
+        index: u
       });
+      if (q !== u) {
+        animations.push({
+          classes: "sorting--selected-left",
+          index: q,
+          toIndex: u,
+          toIndexClasses: "sorting--selected-right"
+        });
+      }
       const aux = numbers[q];
       numbers[q] = numbers[u];
       numbers[u] = aux;
       q++;
+    } else {
+      animations.push({
+        classes: "sorting--selected-right",
+        index: u
+      });
     }
   }
   animations.push({
+    classes: "sorting--smallest",
     index: q,
     toIndex: r,
-    classes: "sorting--selected"
+    toIndexClasses: "sorting--selected-right"
   });
   const aux = numbers[q];
   numbers[q] = numbers[r];
   numbers[r] = aux;
   animations.push({
+    classes: "",
     index: p,
-    toIndex: r + 1,
     multiple: true,
-    classes: ""
+    toIndex: r + 1
   });
   return q;
 };

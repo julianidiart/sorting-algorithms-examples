@@ -54,7 +54,18 @@ export const NumbersStore = props => {
   const performAnimations = animations => {
     setSorting(true);
     animations.forEach(
-      ({ classes, index, toIndex, multiple, merging, mergingValue }, i) => {
+      (
+        {
+          classes,
+          index,
+          multiple,
+          merging,
+          mergingValue,
+          toIndex,
+          toIndexClasses
+        },
+        i
+      ) => {
         setTimeout(() => {
           let movingNumbers = [...numbers];
           if (multiple) {
@@ -73,6 +84,8 @@ export const NumbersStore = props => {
               const aux = movingNumbers[toIndex].value;
               movingNumbers[toIndex].value = movingNumbers[index].value;
               movingNumbers[index].value = aux;
+              if (toIndexClasses !== undefined)
+                movingNumbers[toIndex].classes = toIndexClasses;
             }
           }
           setNumbers(movingNumbers);
