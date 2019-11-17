@@ -2,20 +2,26 @@ import React, { useContext } from "react";
 import NumbersContext from "../../contexts/NumbersContext";
 
 const ButtonsContainer = () => {
-  const context = useContext(NumbersContext);
+  const {
+    generateRandomNumbers,
+    handleInsertionSort,
+    handleMergeSort,
+    handleSelectionSort,
+    handleQuicksort,
+    setShowBars,
+    showBars,
+    sorting
+  } = useContext(NumbersContext);
   return (
     <>
       <div className="buttons-container">
-        <button
-          className="button"
-          onClick={() => context.setShowBars(!context.showBars)}
-        >
-          {context.showBars ? "Hide" : "Show"} bars
+        <button className="button" onClick={() => setShowBars(!showBars)}>
+          {showBars ? "Hide" : "Show"} bars
         </button>
         <button
           className="button"
-          onClick={context.generateRandomNumbers}
-          disabled={context.sorting}
+          onClick={generateRandomNumbers}
+          disabled={sorting}
         >
           Generate random numbers
         </button>
@@ -23,24 +29,23 @@ const ButtonsContainer = () => {
       <div className="buttons-container">
         <button
           className="button"
-          onClick={context.handleSelectionSort}
-          disabled={context.sorting}
+          onClick={handleSelectionSort}
+          disabled={sorting}
         >
           Selection sort
         </button>
         <button
           className="button"
-          onClick={context.handleInsertionSort}
-          disabled={context.sorting}
+          onClick={handleInsertionSort}
+          disabled={sorting}
         >
           Insertion sort
         </button>
-        <button
-          className="button"
-          onClick={context.handleMergeSort}
-          disabled={context.sorting}
-        >
+        <button className="button" onClick={handleMergeSort} disabled={sorting}>
           Merge sort
+        </button>
+        <button className="button" onClick={handleQuicksort} disabled={sorting}>
+          Quicksort
         </button>
       </div>
     </>

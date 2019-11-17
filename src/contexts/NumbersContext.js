@@ -1,7 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
+import { uniqueID, getRandomNumber } from "../utils";
 import selectionSort from "../sortingAlgorithms/selectionSort";
 import insertionSort from "../sortingAlgorithms/insertionSort";
 import mergeSort from "../sortingAlgorithms/mergeSort";
+import quicksort from "../sortingAlgorithms/quicksort";
 
 const Context = createContext([]);
 export const NumbersStore = props => {
@@ -29,32 +31,6 @@ export const NumbersStore = props => {
     }
     setNumbers(numbersArray);
   };
-  const uniqueID = () => {
-    function chr4() {
-      return Math.random()
-        .toString(16)
-        .slice(-4);
-    }
-    return (
-      chr4() +
-      chr4() +
-      "-" +
-      chr4() +
-      "-" +
-      chr4() +
-      "-" +
-      chr4() +
-      "-" +
-      chr4() +
-      chr4() +
-      chr4()
-    );
-  };
-  const getRandomNumber = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
   const handleSelectionSort = () => {
     const numbersToSort = [...numbers];
     const selectionSortAnimations = selectionSort(numbersToSort);
@@ -68,8 +44,12 @@ export const NumbersStore = props => {
   const handleMergeSort = () => {
     const numbersToSort = [...numbers];
     const mergeSortAnimations = mergeSort(numbersToSort);
-    console.log(mergeSortAnimations);
     performAnimations(mergeSortAnimations);
+  };
+  const handleQuicksort = () => {
+    const numbersToSort = [...numbers];
+    const quicksortAnimations = quicksort(numbersToSort);
+    performAnimations(quicksortAnimations);
   };
   const performAnimations = animations => {
     setSorting(true);
@@ -125,6 +105,7 @@ export const NumbersStore = props => {
         handleInsertionSort,
         handleMergeSort,
         handleSelectionSort,
+        handleQuicksort,
         numbers,
         onChangeQuantity,
         onChangeRangeFrom,
