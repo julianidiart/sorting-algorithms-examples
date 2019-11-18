@@ -4,6 +4,7 @@ import selectionSort from "../sortingAlgorithms/selectionSort";
 import insertionSort from "../sortingAlgorithms/insertionSort";
 import mergeSort from "../sortingAlgorithms/mergeSort";
 import quicksort from "../sortingAlgorithms/quicksort";
+import bubbleSort from "../sortingAlgorithms/bubbleSort";
 
 const Context = createContext([]);
 export const NumbersStore = props => {
@@ -51,6 +52,11 @@ export const NumbersStore = props => {
     const quicksortAnimations = quicksort(numbersToSort);
     performAnimations(quicksortAnimations);
   };
+  const handleBubbleSort = () => {
+    const numbersToSort = [...numbers];
+    const bubbleSortAnimations = bubbleSort(numbersToSort);
+    performAnimations(bubbleSortAnimations);
+  };
   const performAnimations = animations => {
     setSorting(true);
     animations.forEach(
@@ -69,7 +75,7 @@ export const NumbersStore = props => {
         setTimeout(() => {
           let movingNumbers = [...numbers];
           if (multiple) {
-            for (let i = index; i < toIndex; i++) {
+            for (let i = index; i <= toIndex; i++) {
               movingNumbers[i].merging = merging;
               if (merging === false)
                 movingNumbers[i].value = movingNumbers[i].mergingValue;
@@ -115,6 +121,7 @@ export const NumbersStore = props => {
     <Context.Provider
       value={{
         generateRandomNumbers,
+        handleBubbleSort,
         handleInsertionSort,
         handleMergeSort,
         handleSelectionSort,

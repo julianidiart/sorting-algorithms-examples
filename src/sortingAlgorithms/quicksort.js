@@ -11,7 +11,7 @@ const partition = (numbers, p, r, animations) => {
     classes: "sorting--selected",
     index: p,
     multiple: true,
-    toIndex: r + 1
+    toIndex: r
   });
   let q = p;
   animations.push({
@@ -56,7 +56,7 @@ const partition = (numbers, p, r, animations) => {
     classes: "",
     index: p,
     multiple: true,
-    toIndex: r + 1
+    toIndex: r
   });
   return q;
 };

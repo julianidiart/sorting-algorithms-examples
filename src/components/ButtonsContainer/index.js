@@ -5,6 +5,7 @@ const ButtonsContainer = () => {
   const {
     generateRandomNumbers,
     handleInsertionSort,
+    handleBubbleSort,
     handleMergeSort,
     handleSelectionSort,
     handleQuicksort,
@@ -40,6 +41,13 @@ const ButtonsContainer = () => {
           disabled={sorting}
         >
           Insertion sort
+        </button>
+        <button
+          className="button"
+          onClick={handleBubbleSort}
+          disabled={sorting}
+        >
+          Bubble sort
         </button>
         <button className="button" onClick={handleMergeSort} disabled={sorting}>
           Merge sort

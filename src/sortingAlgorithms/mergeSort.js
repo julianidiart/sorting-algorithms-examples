@@ -17,7 +17,7 @@ const merge = (numbers, p, q, r, animations) => {
     merging: true,
     mergignValue: null,
     multiple: true,
-    toIndex: q + 1
+    toIndex: q
   });
   animations.push({
     classes: "sorting--selected-right",
@@ -25,7 +25,7 @@ const merge = (numbers, p, q, r, animations) => {
     merging: true,
     mergignValue: null,
     multiple: true,
-    toIndex: r + 1
+    toIndex: r
   });
   let i = 0,
     j = 0;
@@ -59,7 +59,7 @@ const merge = (numbers, p, q, r, animations) => {
     index: p,
     merging: false,
     multiple: true,
-    toIndex: r + 1
+    toIndex: r
   });
   return animations;
 };
