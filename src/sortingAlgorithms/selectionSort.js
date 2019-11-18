@@ -1,47 +1,46 @@
 export default numbers => {
   let animations = [];
-  // numbers = [...numbers];
   for (let i = 0; i < numbers.length - 1; i++) {
     if (i > 0) {
       animations.push({
         index: i - 1,
-        classes: ""
+        classes: "sorting--selected-left"
       });
     }
     animations.push({
-      index: i,
-      classes: "sorting--selected"
+      classes: "sorting--selected",
+      index: i
     });
     let smallest = i;
     for (let j = i + 1; j < numbers.length; j++) {
       animations.push({
-        index: j,
-        classes: "sorting--checking"
+        classes: "sorting--checking",
+        index: j
       });
       if (numbers[j].value < numbers[smallest].value) {
         if (smallest !== i) {
           animations.push({
-            index: smallest,
-            classes: ""
+            classes: "",
+            index: smallest
           });
         }
         smallest = j;
         animations.push({
-          index: j,
-          classes: "sorting--smallest"
+          classes: "sorting--smallest",
+          index: j
         });
       } else {
         animations.push({
-          index: j,
-          classes: ""
+          classes: "",
+          index: j
         });
       }
     }
     if (smallest !== i) {
       animations.push({
+        classes: "",
         index: smallest,
-        toIndex: i,
-        classes: ""
+        toIndex: i
       });
     }
     const aux = numbers[i];
@@ -49,8 +48,10 @@ export default numbers => {
     numbers[smallest] = aux;
   }
   animations.push({
-    index: numbers.length - 2,
-    classes: ""
+    classes: "",
+    index: 0,
+    multiple: true,
+    toIndex: numbers.length - 1
   });
   return animations;
 };
