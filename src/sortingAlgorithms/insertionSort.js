@@ -1,6 +1,5 @@
 export default numbers => {
   let animations = [];
-  // numbers = [...numbers];
   for (let i = 1; i < numbers.length; i++) {
     animations.push({
       index: i - 1,
