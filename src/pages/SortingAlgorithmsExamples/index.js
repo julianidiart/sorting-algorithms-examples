@@ -1,6 +1,6 @@
 import React from "react";
 import NumbersContainer from "../../components/NumbersContainer";
-import ButtonsContainer from "../../components/ButtonsContainer";
+import SortingButtonsContainer from "../../components/SortingButtonsContainer";
 import ConfigurationContainer from "../../components/ConfigurationContainer";
 import { NumbersStore } from "../../contexts/NumbersContext";
 
@@ -11,7 +11,7 @@ const SortingAlgorithmsExample = () => {
         <h1>Sorting Algorithms Examples</h1>
         <ConfigurationContainer />
         <NumbersContainer />
-        <ButtonsContainer />
+        <SortingButtonsContainer />
       </div>
     </NumbersStore>
   );

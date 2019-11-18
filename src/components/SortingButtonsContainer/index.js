@@ -1,32 +1,17 @@
 import React, { useContext } from "react";
 import NumbersContext from "../../contexts/NumbersContext";
 
-const ButtonsContainer = () => {
+const SortingButtonsContainer = () => {
   const {
-    generateRandomNumbers,
     handleInsertionSort,
     handleBubbleSort,
     handleMergeSort,
     handleSelectionSort,
     handleQuicksort,
-    setShowBars,
-    showBars,
     sorting
   } = useContext(NumbersContext);
   return (
     <>
-      <div className="buttons-container">
-        <button className="button" onClick={() => setShowBars(!showBars)}>
-          {showBars ? "Hide" : "Show"} bars
-        </button>
-        <button
-          className="button"
-          onClick={generateRandomNumbers}
-          disabled={sorting}
-        >
-          Generate random numbers
-        </button>
-      </div>
       <div className="buttons-container">
         <button
           className="button"
@@ -60,4 +45,4 @@ const ButtonsContainer = () => {
   );
 };
 
-export default ButtonsContainer;
+export default SortingButtonsContainer;
