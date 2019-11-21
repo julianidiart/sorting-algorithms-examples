@@ -1,45 +1,25 @@
 import React, { useContext } from "react";
+import Button from "../Button";
 import NumbersContext from "../../contexts/NumbersContext";
 
 const SortingButtonsContainer = () => {
   const {
     handleInsertionSort,
     handleBubbleSort,
+    handleHeapSort,
     handleMergeSort,
     handleSelectionSort,
-    handleQuicksort,
-    sorting
+    handleQuicksort
   } = useContext(NumbersContext);
   return (
     <>
       <div className="buttons-container">
-        <button
-          className="button"
-          onClick={handleSelectionSort}
-          disabled={sorting}
-        >
-          Selection sort
-        </button>
-        <button
-          className="button"
-          onClick={handleInsertionSort}
-          disabled={sorting}
-        >
-          Insertion sort
-        </button>
-        <button
-          className="button"
-          onClick={handleBubbleSort}
-          disabled={sorting}
-        >
-          Bubble sort
-        </button>
-        <button className="button" onClick={handleMergeSort} disabled={sorting}>
-          Merge sort
-        </button>
-        <button className="button" onClick={handleQuicksort} disabled={sorting}>
-          Quicksort
-        </button>
+        <Button onClick={handleSelectionSort} text="Selection sort" />
+        <Button onClick={handleInsertionSort} text="Insertion sort" />
+        <Button onClick={handleBubbleSort} text="Bubble sort" />
+        <Button onClick={handleMergeSort} text="Merge sort" />
+        <Button onClick={handleQuicksort} text="Quicksort" />
+        <Button onClick={handleHeapSort} text="Heap sort" />
       </div>
     </>
   );

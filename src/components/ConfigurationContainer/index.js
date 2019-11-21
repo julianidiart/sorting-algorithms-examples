@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Button from "../Button";
 import NubersContext from "../../contexts/NumbersContext";
 
 const ConfigurationContainer = () => {
@@ -67,16 +68,15 @@ const ConfigurationContainer = () => {
         <div>x speed.</div>
       </div>
       <div className="buttons-container">
-        <button className="button" onClick={() => setShowBars(!showBars)}>
-          {showBars ? "Hide" : "Show"} bars
-        </button>
-        <button
-          className="button"
+        <Button
+          onClick={() => setShowBars(!showBars)}
+          text={(showBars ? "Hide" : "Show") + " bars"}
+          notDisabledOnSort
+        />
+        <Button
           onClick={generateRandomNumbers}
-          disabled={sorting}
-        >
-          Generate random numbers
-        </button>
+          text="Generate random numbers"
+        />
       </div>
     </>
   );
