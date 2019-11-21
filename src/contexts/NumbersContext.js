@@ -1,10 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
 import { uniqueID, getRandomNumber } from "../utils";
-import selectionSort from "../sortingAlgorithms/selectionSort";
+import bubbleSort from "../sortingAlgorithms/bubbleSort";
 import insertionSort from "../sortingAlgorithms/insertionSort";
 import mergeSort from "../sortingAlgorithms/mergeSort";
 import quicksort from "../sortingAlgorithms/quicksort";
-import bubbleSort from "../sortingAlgorithms/bubbleSort";
+import selectionSort from "../sortingAlgorithms/selectionSort";
 
 const Context = createContext([]);
 export const NumbersStore = props => {
@@ -32,30 +32,29 @@ export const NumbersStore = props => {
     }
     setNumbers(numbersArray);
   };
-  const handleSelectionSort = () => {
+  const handleSort = type => {
     const numbersToSort = [...numbers];
-    const selectionSortAnimations = selectionSort(numbersToSort);
-    performAnimations(selectionSortAnimations);
-  };
-  const handleInsertionSort = () => {
-    const numbersToSort = [...numbers];
-    const insertionSortAnimations = insertionSort(numbersToSort);
-    performAnimations(insertionSortAnimations);
-  };
-  const handleMergeSort = () => {
-    const numbersToSort = [...numbers];
-    const mergeSortAnimations = mergeSort(numbersToSort);
-    performAnimations(mergeSortAnimations);
-  };
-  const handleQuicksort = () => {
-    const numbersToSort = [...numbers];
-    const quicksortAnimations = quicksort(numbersToSort);
-    performAnimations(quicksortAnimations);
-  };
-  const handleBubbleSort = () => {
-    const numbersToSort = [...numbers];
-    const bubbleSortAnimations = bubbleSort(numbersToSort);
-    performAnimations(bubbleSortAnimations);
+    let animations = [];
+    switch (type) {
+      case "bubble":
+        animations = bubbleSort(numbersToSort);
+        break;
+      case "insertion":
+        animations = insertionSort(numbersToSort);
+        break;
+      case "merge":
+        animations = mergeSort(numbersToSort);
+        break;
+      case "quick":
+        animations = quicksort(numbersToSort);
+        break;
+      case "selection":
+        animations = selectionSort(numbersToSort);
+        break;
+      default:
+        break;
+    }
+    performAnimations(animations);
   };
   const performAnimations = animations => {
     setSorting(true);
@@ -121,11 +120,7 @@ export const NumbersStore = props => {
     <Context.Provider
       value={{
         generateRandomNumbers,
-        handleBubbleSort,
-        handleInsertionSort,
-        handleMergeSort,
-        handleSelectionSort,
-        handleQuicksort,
+        handleSort,
         numbers,
         onChangeQuantity,
         onChangeRangeFrom,

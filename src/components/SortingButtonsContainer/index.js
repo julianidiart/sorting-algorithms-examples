@@ -3,23 +3,15 @@ import Button from "../Button";
 import NumbersContext from "../../contexts/NumbersContext";
 
 const SortingButtonsContainer = () => {
-  const {
-    handleInsertionSort,
-    handleBubbleSort,
-    handleHeapSort,
-    handleMergeSort,
-    handleSelectionSort,
-    handleQuicksort
-  } = useContext(NumbersContext);
+  const { handleSort } = useContext(NumbersContext);
   return (
     <>
       <div className="buttons-container">
-        <Button onClick={handleSelectionSort} text="Selection sort" />
-        <Button onClick={handleInsertionSort} text="Insertion sort" />
-        <Button onClick={handleBubbleSort} text="Bubble sort" />
-        <Button onClick={handleMergeSort} text="Merge sort" />
-        <Button onClick={handleQuicksort} text="Quicksort" />
-        <Button onClick={handleHeapSort} text="Heap sort" />
+        <Button onClick={() => handleSort("bubble")} text="Bubble sort" />
+        <Button onClick={() => handleSort("insertion")} text="Insertion sort" />
+        <Button onClick={() => handleSort("merge")} text="Merge sort" />
+        <Button onClick={() => handleSort("quick")} text="Quicksort" />
+        <Button onClick={() => handleSort("selection")} text="Selection sort" />
       </div>
     </>
   );
